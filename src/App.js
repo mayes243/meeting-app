@@ -19,28 +19,32 @@ function App(props) {
 
     return localStream;
   };
-  useEffect(async () => {
-    const stream = await getUserStream();
-    stream.getVideoTracks()[0].enabled = false;
-    props.setMainStream(stream);
+  useEffect(() => {
+    const fetchData = async () => {
+      const stream = await getUserStream();
+      stream.getVideoTracks()[0].enabled = false;
+      props.setMainStream(stream);
 
-    connectedRef.on("value", (snap) => {
-      if (snap.val()) {
-        const defaultPreference = {
-          audio: true,
-          video: false,
-          screen: false,
-        };
-        const userStatusRef = participantRef.push({
-          userName,
-          preferences: defaultPreference,
-        });
-        props.setUser({
-          [userStatusRef.key]: { name: userName, ...defaultPreference },
-        });
-        userStatusRef.onDisconnect().remove();
-      }
-    });
+      connectedRef.on("value", (snap) => {
+        if (snap.val()) {
+          const defaultPreference = {
+            audio: true,
+            video: false,
+            screen: false,
+          };
+          const userStatusRef = participantRef.push({
+            userName,
+            preferences: defaultPreference,
+          });
+          props.setUser({
+            [userStatusRef.key]: { name: userName, ...defaultPreference },
+          });
+          userStatusRef.onDisconnect().remove();
+        }
+      });
+    };
+
+    fetchData();
   }, []);
 
   const connectedRef = db.database().ref(".info/connected");
@@ -75,7 +79,7 @@ function App(props) {
   }, [isStreamSet, isUserSet]);
 
   return (
-    <div class="flex w-screen h-screen">
+    <div className="flex w-screen h-screen">
       <MainScreen />
     </div>
   );

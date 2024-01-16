@@ -34,8 +34,14 @@ const MeetingFooter = (props) => {
     });
   };
 
-  const onScreenClick = () => {
-    props.onScreenClick(setScreenState);
+  const onScreenClick = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getDisplayMedia();
+      // Handle the screen sharing stream
+      props.onScreenClick(setScreenState, stream);
+    } catch (error) {
+      console.error("Error accessing screen:", error);
+    }
   };
 
   const setScreenState = (isEnabled) => {
