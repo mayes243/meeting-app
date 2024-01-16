@@ -2,6 +2,10 @@
 
 A comprehensive platform designed to streamline meeting interactions, built with React and Firebase.
 
+# Demo
+
+- Access the deployed version of the app: [Meeting App on Vercel](https://meeting-app-mayes243.vercel.app/?id=-NoFUChx6NqPorImC3Le)
+
 ## Features
 
 - Effortlessly schedule and join meetings
