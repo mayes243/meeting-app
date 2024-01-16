@@ -69,6 +69,10 @@ const MainScreen = (props) => {
 
     props.updateUser({ screen: true });
   };
+
+  const onHangUp = () => {
+    window.location.href = "";
+  };
   return (
     <div className="w-full">
       <div className="w-full h-[90vh] bg-gray-800">
@@ -80,6 +84,7 @@ const MainScreen = (props) => {
           onScreenClick={onScreenClick}
           onMicClick={onMicClick}
           onVideoClick={onVideoClick}
+          onHangUp={onHangUp}
         />
       </div>
     </div>

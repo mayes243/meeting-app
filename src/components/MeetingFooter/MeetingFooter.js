@@ -6,6 +6,7 @@ import {
   faDesktop,
   faVideoSlash,
   faMicrophoneSlash,
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "./MeetingFooter.css";
@@ -42,6 +43,10 @@ const MeetingFooter = (props) => {
     } catch (error) {
       console.error("Error accessing screen:", error);
     }
+  };
+
+  const hangUp = () => {
+    props.onHangUp();
   };
 
   const setScreenState = (isEnabled) => {
@@ -81,6 +86,9 @@ const MeetingFooter = (props) => {
         disabled={streamState.screen}
       >
         <FontAwesomeIcon icon={faDesktop} />
+      </div>
+      <div className="meeting-icons !bg-red-500" data-tip="Hang Up" onClick={hangUp}>
+        <FontAwesomeIcon icon={faPhone} />
       </div>
       <ReactTooltip />
     </div>
