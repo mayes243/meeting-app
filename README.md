@@ -34,7 +34,19 @@ A comprehensive platform designed to streamline meeting interactions, built with
 ```
 
 2. Navigate to the project directory: `cd meeting-app`
+
 3. Install dependencies: `npm install`
+
+### Set up environment variables (Required)
+
+- Create a .env file in the root of your project.
+
+- Add the following variables and replace the values with your Firebase details:
+
+```bash
+REACT_APP_FIREBASE_DB_URL=your_firebase_database_url
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+```
 
 ### Usage
 
